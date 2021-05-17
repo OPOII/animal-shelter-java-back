@@ -68,7 +68,6 @@ public class AnimalShelterTest {
         animal.setGender("Male");
         animal.setBreed("Labrador");
         animal.setVaccinated(true);
-
         Mockito.when(animalService.save(Mockito.any(Animal.class))).thenReturn(animal);
     }
 
