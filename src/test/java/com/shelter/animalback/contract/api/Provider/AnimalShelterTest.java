@@ -21,7 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-@PactBroker(authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"), url = "${PACT_BROKER_URL}")
+@PactBroker(authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"), url = "${PACT_BROKER_BASE_URL}")
 @Provider("AnimalShelterBack")
 @ExtendWith(MockitoExtension.class)
 public class AnimalShelterTest {
@@ -47,7 +47,7 @@ public class AnimalShelterTest {
         context.setTarget(testTarget);
     }
 
-    @State("There are animals in the database")
+    @State("has animals")
     public void verifyListAnimals(){
         Animal animal=new Animal();
         animal.setName("Tommy");
@@ -61,7 +61,7 @@ public class AnimalShelterTest {
         Mockito.when(animalService.getAll()).thenReturn(animals);
     }
 
-    @State("Create a new animal")
+    @State("create animal")
     public void verifyCreateAnimals(){
         Animal animal=new Animal();
         animal.setName("Max");
@@ -71,9 +71,9 @@ public class AnimalShelterTest {
         Mockito.when(animalService.save(Mockito.any(Animal.class))).thenReturn(animal);
     }
 
-    @State("Delete a animal")
+    @State("delete animal")
     public void verifyDeleteAnimals(){
-        String animalName="Max";
+        String animalName="Rex";
         Mockito.doAnswer((i)->{
             assertTrue(animalName.equals(i.getArgument(0)));
             return null;
