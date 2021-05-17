@@ -88,7 +88,7 @@ public class AnimalController {
                 dto.getBreed(),
                 dto.getGender(),
                 dto.isVaccinated(),
-                dto.getVaccines()==null ? new String[0] : dto.getVaccines());
+                dto.getVaccines() == null ? new String[0] : dto.getVaccines());
     }
 
     private Animal map(UpdateAnimalBodyDto dto) {

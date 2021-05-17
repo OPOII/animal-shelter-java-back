@@ -47,22 +47,26 @@ public class AnimalShelterTest {
         context.setTarget(testTarget);
     }
 
-    @State("has animals")
-    public void verifyListAnimals(){
-        Animal animal=new Animal();
-        animal.setName("Tommy");
+    @State("there are animals")
+    public void listAnimal(){
+        String[] vacuna={"rabia"};
+        Animal animal = new Animal();
+        animal.setName("Bigotes");
+        animal.setBreed("Siames");
         animal.setGender("Male");
-        animal.setBreed("French puddle");
-        animal.setVaccinated(true);
+        animal.setVaccines(vacuna);
+        animal.setVaccinated(false);
 
-        ArrayList<Animal> animals=new ArrayList<Animal>();
+        ArrayList<Animal> animals = new ArrayList<Animal>();
         animals.add(animal);
 
         Mockito.when(animalService.getAll()).thenReturn(animals);
+
     }
 
+
     @State("create animal")
-    public void verifyCreateAnimals(){
+    public void createAnimal(){
         Animal animal=new Animal();
         animal.setName("Max");
         animal.setGender("Male");
@@ -72,7 +76,7 @@ public class AnimalShelterTest {
     }
 
     @State("delete animal")
-    public void verifyDeleteAnimals(){
+    public void deleteAnimal(){
         String animalName="Rex";
         Mockito.doAnswer((i)->{
             assertTrue(animalName.equals(i.getArgument(0)));
